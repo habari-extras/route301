@@ -65,7 +65,7 @@
 		public function info() {
 			return array(
 				'name' => 'Route 301',
-				'version' => '0.6.3',
+				'version' => '0.6.4',
 				'url' => 'http://habariproject.org/',
 				'author' =>	'Habari Community',
 				'authorurl' => 'http://habariproject.org/',
@@ -107,16 +107,16 @@
 		public function act( $action )
 		{
 			if ( $action === 'atom_feed' ) {
-				$url = URL::get( 'atom_feed', array_merge( array( 'index' => 1 ), $this->handler_vars ) );
+				$url = URL::get( 'atom_feed', array_merge( array( 'index' => 1 ), $this->handler_vars ), false );
 			} else
 			if ( $action === 'display_entry' ) {
 				if ( isset( $this->handler_vars['slug'] ) ) {
-					$url = URL::get( 'display_entry', $this->handler_vars );
+					$url = URL::get( 'display_entry', $this->handler_vars, false );
 				} else {
 					$url = Post::get( $this->handler_vars )->permalink;
 				}
 			} else {
-				$url = URL::get( $action, $this->handler_vars );
+				$url = URL::get( $action, $this->handler_vars, false );
 			}
 
 			header( 'Location: ' . $url, true, 301 );

@@ -1,5 +1,7 @@
 <?php
 
+	namespace Habari;
+
 	class Route301 extends Plugin
 	{
 		/* Add your custom rules here.
